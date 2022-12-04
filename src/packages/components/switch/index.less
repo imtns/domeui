@@ -1,0 +1,57 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.de-switch {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  background-color: #fff;
+  vertical-align: middle;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color @transition-time linear,
+    border-color @transition-time linear, box-shadow @transition-time linear;
+  user-select: none;
+  outline: none;
+
+  &__inner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1px;
+    background-color: @switch-off-bg-color;
+    border: 1px solid @switch-off-bg-color;
+    box-sizing: border-box;
+  }
+
+  &__text {
+    flex: auto;
+    color: @switch-text-color;
+    font-size: @switch-text-size;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  &__i {
+    flex-shrink: 0;
+    background-color: #fff;
+    content: '';
+  }
+
+  &:focus,
+  &:hover {
+    box-shadow: 0 0 3px @switch-off-bg-color;
+  }
+
+  .switch-type(primary, @switch-primary-bg-color, @switch-off-bg-color);
+  .switch-type(success, @switch-success-bg-color, @switch-off-bg-color);
+
+  &__disabled {
+    box-shadow: none !important;
+    cursor: @switch-disabled-cursor !important;
+  }
+  &__disabled &__inner {
+    opacity: @switch-disabled-opacity;
+  }
+}

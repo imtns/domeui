@@ -1,0 +1,111 @@
+.input-wrap(
+  @border-width, @border-style, @border-color, @focus-border-color, @radius,
+  @bg-color, @font-color, @transition-time
+) {
+  position: relative;
+  display: inline-flex;
+  background-color: @bg-color;
+  border: @border-width @border-style @border-color;
+  border-radius: @radius;
+  box-sizing: border-box;
+  color: @font-color;
+  vertical-align: middle;
+  transition: border @transition-time linear, box-shadow @transition-time linear;
+}
+
+.input-base(@placeholder-color) {
+  flex: auto;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  vertical-align: middle;
+  outline: none;
+
+  &::placeholder {
+    color: @placeholder-color;
+  }
+}
+
+.input-hover(@focus-border-color) {
+  border-color: @focus-border-color;
+  box-shadow: 0 0 3px @focus-border-color;
+}
+
+.input-disabled(@disabled-bg-color, @border-color) {
+  background-color: @disabled-bg-color !important;
+  border-color: @border-color !important;
+  box-shadow: none !important;
+  cursor: default !important;
+}
+
+.input-kit(@border-width) {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.input-counter(@bg-color, @color) {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 6px;
+  background-color: @bg-color;
+  color: @color;
+  font-size: inherit;
+  font-weight: 400;
+  user-select: none;
+
+  > em {
+    color: inherit;
+    font-style: normal;
+  }
+}
+
+.input-clear(@bg-color, @color) {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: 14px;
+  height: 14px;
+  .margin-x(4px);
+  background-color: @bg-color;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 1px;
+    background-color: @color;
+    transform-origin: 50% 50%;
+    content: '';
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+.input-size(@height, @border-width, @padding-x, @line-height) {
+  height: @height;
+  padding: ((@height - @line-height) / 2 - @border-width) @padding-x;
+}
+
+.input-font-size(@font-size, @line-height) {
+  font-size: @font-size;
+  line-height: @line-height;
+}
